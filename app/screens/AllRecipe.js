@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import Recipe from "./Recipe";
+import * as firebase from "firebase";
+import { loggingOut } from "../../API/firebaseMethod";
 
 import {
   ImageBackground,
@@ -10,16 +12,19 @@ import {
   Text,
   Button,
   TextInput,
+  Image,
   TouchableHighlight,
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
 import { Picker } from "@react-native-community/picker";
 
-export default function AllRecipe() {
+export default function AllRecipe({ navigation }) {
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [alert, setAlert] = useState("");
+
+  const [firstLoaded, setFirstLoaded] = useState(true);
 
   const APP_ID = "16e3817c";
   const APP_KEY = "5aed917b5f4f1b06292004c8f9959c96";
@@ -54,6 +59,12 @@ export default function AllRecipe() {
   const onSubmit = (event) => {
     event.preventDefault();
     getData();
+    setFirstLoaded(false);
+  };
+
+  const signOut = () => {
+    loggingOut();
+    navigation.replace("Home");
   };
 
   const renderRecipe = (recipe) => {
@@ -62,46 +73,68 @@ export default function AllRecipe() {
 
   return (
     <SafeAreaView style={styles.background}>
+      <TouchableOpacity onPress={signOut}>
+        <Text style={styles.signOut}>Sign Out</Text>
+      </TouchableOpacity>
       <Text style={styles.title}>FOOD NATION</Text>
-      {alert !== "" && <Text>{alert}</Text>}
+      {alert !== "" && <Text style={styles.alertText}>{alert}</Text>}
       <TextInput
         style={styles.searchBar}
         value={query}
         onChangeText={(item) => setQuery(item)}
         placeholder="Search Food Category"
       />
-      <TouchableOpacity onPress={onSubmit} style={{ height: 30 }}>
-        <Text style={{ color: "white", fontSize: 16, margin: "auto" }}>
-          Search
-        </Text>
+      <TouchableOpacity onPress={onSubmit} style={{ height: 40 }}>
+        <Text style={styles.searchButton}>Search</Text>
       </TouchableOpacity>
-
-      <FlatList
-        style={styles.recipeList}
-        data={recipes}
-        numColumns={2}
-        renderItem={renderRecipe}
-      />
-      {/* <View>
-          {recipes !== [] &&
-            recipes.map((recipe) => (
-              <Recipe key={recipe.recipe.label} recipe={recipe} />
-            ))}
-        </View> */}
+      <View style={styles.recipeContainer}>
+        {firstLoaded ? (
+          <Image
+            style={styles.image}
+            source={require("../assets/worldFood.png")}
+          />
+        ) : (
+          <FlatList
+            style={styles.recipeList}
+            data={recipes}
+            numColumns={2}
+            renderItem={renderRecipe}
+          />
+        )}
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   background: {
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
     backgroundColor: "tomato",
   },
+  signOut: {
+    color: "white",
+    fontSize: 16,
+    right: "-38%",
+    top: "70%",
+  },
   title: {
-    fontSize: 45,
+    fontSize: 48,
     color: "white",
     fontWeight: "bold",
+    marginTop: "3%",
+    marginBottom: "5%",
+  },
+  alertText: {
+    color: "white",
+    fontSize: 16,
+    marginBottom: "2%",
+    fontWeight: "bold"
+  },
+  image: {
+    width: 400,
+    height: 400,
+    marginTop: "25%",
   },
   searchBar: {
     height: 35,
@@ -111,10 +144,20 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderWidth: 1,
   },
+  recipeContainer: {
+    height: "80%",
+  },
   recipeList: {
     backgroundColor: "white",
   },
   recipeFilter: {
     position: "absolute",
+  },
+  searchButton: {
+    color: "white",
+    fontSize: 20,
+    margin: "auto",
+    marginTop: "1.5%",
+    fontWeight: "bold",
   },
 });

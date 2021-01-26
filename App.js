@@ -50,6 +50,11 @@ export default function App() {
           component={Dashboard}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name={"AllRecipeScreen"}
+          component={AllRecipeScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

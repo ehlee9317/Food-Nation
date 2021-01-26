@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.4.0",
+    "@mdi/js": "^5.9.55",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-community/picker": "^1.8.1",
     "@react-native-firebase/app": "^10.5.0",
