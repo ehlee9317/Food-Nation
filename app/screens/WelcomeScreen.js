@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
   titleContainer: {
     fontSize: 80,
     position: "absolute",
-    top: 90,
+    top: "10%",
     color: "white",
     alignItems: "center",
   },
   title: {
     fontSize: 80,
-    top: 120,
+    top: "40%",
     color: "#fc5c65",
     fontWeight: "bold",
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
@@ -64,13 +64,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 1
+    textShadowRadius: 1,
+    top: "22%",
+    // bottom: "120%"
   },
   signInButton: {
     width: 150,
     height: 40,
     backgroundColor: "#fc5c65",
-    top: 10,
+    top: "68%",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 40,
     backgroundColor: "#4ecdc3",
-    bottom: 10,
+    bottom: "30%",
     justifyContent: "center",
     alignItems: "center"
   },

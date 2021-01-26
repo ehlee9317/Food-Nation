@@ -6,6 +6,7 @@ import {
   Alert,
   ScrollView,
   Keyboard,
+  Image,
   StyleSheet,
   SafeAreaView,
 } from "react-native";
@@ -41,56 +42,72 @@ export default function SignUp({ navigation }) {
       Alert.alert("Password does not match!");
     } else {
       registration(email, password, lastName, firstName);
-      navigation.navigate("Loading");
       emptyState();
     }
   };
 
   return (
     <SafeAreaView style={styles.signUpContainer}>
-      <Text>Get on Board</Text>
+      <Image style={styles.image} source={require("../assets/cuttingBoard.png")} />
+      <Text style={styles.greeting}>Get on Board</Text>
 
-      <ScrollView onBlur={Keyboard.dismiss}>
-        <TextInput
-          placeholder="First name*"
-          value={firstName}
-          onChangeText={(name) => setFirstName(name)}
-        />
-        <TextInput
-          placeholder="Last name"
+      {/* <ScrollView onBlur={Keyboard.dismiss}> */}
+      <TextInput
+        style={styles.input}
+        placeholder="Full Name*"
+        value={firstName}
+        onChangeText={(name) => setFirstName(name)}
+        borderBottomWidth="1"
+      />
+      <TextInput
+          style={styles.input}
+          placeholder="Last Name"
           value={lastName}
           onChangeText={(name) => setLastName(name)}
+          borderBottomWidth="1"
         />
 
-        <TextInput
-          placeholder="Enter your email*"
-          value={email}
-          onChangeText={(email) => setEmail(email)}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
+      <TextInput
+        style={styles.input}
+        placeholder="E-mail*"
+        value={email}
+        onChangeText={(email) => setEmail(email)}
+        keyboardType="email-address"
+        autoCapitalize="none"
+        borderBottomWidth="1"
+      />
 
-        <TextInput
-          placeholder="Enter your password*"
-          value={password}
-          onChangeText={(password) => setPassword(password)}
-          secureTextEntry={true}
-        />
-        <TextInput
-          placeholder="Retype your password to confirm*"
-          value={confirmPassword}
-          onChangeText={(password2) => setConfirmPassword(password2)}
-          secureTextEntry={true}
-        />
-        <TouchableOpacity onPress={handlePress}>
-          <Text>Sign Up</Text>
-        </TouchableOpacity>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter Password*"
+        value={password}
+        onChangeText={(password) => setPassword(password)}
+        secureTextEntry={true}
+        borderBottomWidth="1"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm Password*"
+        value={confirmPassword}
+        onChangeText={(password2) => setConfirmPassword(password2)}
+        secureTextEntry={true}
+        borderBottomWidth="1"
+      />
+      <TouchableOpacity
+        style={styles.signUpButtonContainer}
+        onPress={handlePress}
+      >
+        <Text style={styles.signUpText}>Sign Up</Text>
+      </TouchableOpacity>
 
-        <Text>Already have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Sign In")}>
-          <Text>Sign In</Text>
-        </TouchableOpacity>
-      </ScrollView>
+      <TouchableOpacity
+        style={styles.signInButtonContainer}
+        onPress={() => navigation.navigate("Sign In")}
+        >
+        <Text style={styles.signInButtonText}>Already have an account? Sign In</Text>
+        {/* <Text>Sign In</Text> */}
+      </TouchableOpacity>
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 }
@@ -104,9 +121,40 @@ const styles = StyleSheet.create({
     // backgroundColor: "#F08080",
   },
   image: {
-    width: 250,
+    width: 380,
     height: 250,
-    marginTop: 80,
-    marginBottom: 20,
+    marginTop: "16%",
   },
+  greeting: {
+    fontSize: 35,
+    marginBottom: "2%",
+  },
+  input: {
+    marginTop: "5%",
+    alignSelf: "stretch",
+    marginLeft: "20%",
+    marginRight: "20%",
+    fontSize: 18,
+  },
+  signUpButtonContainer: {
+    width: 150,
+    marginTop: 60,
+    padding: 10,
+    backgroundColor: "mediumturquoise",
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  signUpText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
+  },
+  signInButtonContainer: {
+    marginTop: "20%",
+    marginBottom: "10%",
+  },
+  signInButtonText: {
+    fontSize: 16,
+    marginBottom: "18%",
+  }
 });

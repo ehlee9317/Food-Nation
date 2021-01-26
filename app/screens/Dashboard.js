@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert, SafeAreaView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as firebase from "firebase";
 import { loggingOut } from "../../API/firebaseMethod";
@@ -32,12 +32,12 @@ export default function Dashboard({ navigation }) {
   };
 
   return (
-    <View>
+    <SafeAreaView>
       <Text>Dashboard</Text>
       <Text>Hi {firstName}</Text>
       <TouchableOpacity onPress={handlePress}>
         <Text>Log Out</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }

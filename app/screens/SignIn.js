@@ -33,7 +33,7 @@ export default function SignIn({ navigation }) {
     <SafeAreaView style={styles.signInContainer}>
       <Image style={styles.image} source={require("../assets/organic.png")} />
       <Text style={styles.greeting1}>Hello there,</Text>
-      <Text style={styles.greeting2}>welcome back</Text>
+      <Text style={styles.greeting2}>Let's get cooking</Text>
 
       <TextInput
         style={styles.input}
@@ -56,13 +56,13 @@ export default function SignIn({ navigation }) {
         style={styles.signInButtonContainer}
         onPress={handlePress}
       >
-        <Text style={styles.signInText}>Sign-In</Text>
+        <Text style={styles.signInText}>Sign In</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.SignUpButtonContainer}
+        style={styles.signUpButtonContainer}
         onPress={() => navigation.navigate("Sign Up")}
       >
-        <Text style={styles.SignUpButtonText}>New Here? Sign Up Here</Text>
+        <Text style={styles.signUpButtonText}>New Here? Sign Up Here</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -79,27 +79,27 @@ const styles = StyleSheet.create({
   image: {
     width: 250,
     height: 250,
-    marginTop: 80,
-    marginBottom: 20,
+    marginTop: "16%",
+    marginBottom: "5%",
   },
   greeting1: {
     fontSize: 35,
   },
   greeting2: {
     fontSize: 35,
-    marginBottom: 20,
+    marginBottom: "2%",
   },
   input: {
-    marginTop: 25,
+    marginTop: "5%",
     alignSelf: "stretch",
-    marginLeft: 60,
-    marginRight: 60,
+    marginLeft: "20%",
+    marginRight: "20%",
     fontSize: 18,
   },
   signInButtonContainer: {
-    width: 150,
-    marginTop: 60,
-    padding: 10,
+    width: 160,
+    marginTop: "16%",
+    padding: "2%",
     backgroundColor: "salmon",
     borderRadius: 10,
     alignItems: "center",
@@ -109,8 +109,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
   },
-  SignUpButtonContainer: {
-    marginTop: 120,
-    marginBottom: 30,
+  signUpButtonContainer: {
+    marginTop: "20%",
+    marginBottom: "10%",
   },
+  signUpButtonText: {
+    fontSize: 16,
+    marginBottom: "10%",
+  }
 });
