@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import RecipeDetails from "./RecipeDetails";
 
 import {
-  ImageBackground,
   StyleSheet,
   View,
   Text,
   Image,
   Button,
-  FlatList,
-  TextInput,
-  TouchableHighlight,
-  SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
 
 export default function Recipe({ recipe }) {
@@ -21,23 +17,28 @@ export default function Recipe({ recipe }) {
 
   return (
     <View style={styles.recipeContainer}>
-      <Text style={styles.foodLabel}>{label}</Text>
-      <Image
-        source={{
-          uri: image,
-        }}
-        style={styles.image}
-      />
-      {/* <Button
+      <View>
+        <Text style={styles.foodLabel}>{label}</Text>
+        <Image
+          source={{
+            uri: image,
+          }}
+          style={styles.image}
+        />
+      </View>
+      <TouchableOpacity
+        style={styles.ingredientButtonContainter}
         title="Ingredients"
         onPress={() => setShowIngredient(!showIngredient)}
-      />
+      >
+        <Text style={styles.ingredientButton}>Ingredients</Text>
+      </TouchableOpacity>
 
-      <View>
+      <View style={styles.ingredientTextContainer}>
         {showIngredient && (
           <RecipeDetails key={ingredients.text} ingredients={ingredients} />
         )}
-      </View> */}
+      </View>
     </View>
   );
 }
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   },
   foodLabel: {
     position: "absolute",
-    bottom: 10,
+    bottom: 1,
     zIndex: 100,
     backgroundColor: "rgba(161, 161, 161, 0.6)",
     borderRadius: 0.5,
@@ -66,4 +67,21 @@ const styles = StyleSheet.create({
     width: 205,
     flexWrap: "wrap",
   },
+  ingredientButtonContainter: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "whitesmoke",
+    width: 120,
+    left: "20%",
+    top: "2%",
+    borderRadius: 5
+  },
+  ingredientButton: {
+    fontSize: 14,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  ingredientTextContainer: {
+    top: "2%"
+  }
 });

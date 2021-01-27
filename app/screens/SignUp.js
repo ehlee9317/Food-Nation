@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  View,
   Text,
   TextInput,
   Alert,
@@ -48,7 +47,10 @@ export default function SignUp({ navigation }) {
 
   return (
     <SafeAreaView style={styles.signUpContainer}>
-      <Image style={styles.image} source={require("../assets/cuttingBoard.png")} />
+      <Image
+        style={styles.image}
+        source={require("../assets/cuttingBoard.png")}
+      />
       <Text style={styles.greeting}>Get on Board</Text>
 
       {/* <ScrollView onBlur={Keyboard.dismiss}> */}
@@ -60,12 +62,12 @@ export default function SignUp({ navigation }) {
         borderBottomWidth="1"
       />
       <TextInput
-          style={styles.input}
-          placeholder="Last Name"
-          value={lastName}
-          onChangeText={(name) => setLastName(name)}
-          borderBottomWidth="1"
-        />
+        style={styles.input}
+        placeholder="Last Name"
+        value={lastName}
+        onChangeText={(name) => setLastName(name)}
+        borderBottomWidth="1"
+      />
 
       <TextInput
         style={styles.input}
@@ -103,8 +105,10 @@ export default function SignUp({ navigation }) {
       <TouchableOpacity
         style={styles.signInButtonContainer}
         onPress={() => navigation.navigate("Sign In")}
-        >
-        <Text style={styles.signInButtonText}>Already have an account? Sign In</Text>
+      >
+        <Text style={styles.signInButtonText}>
+          Already have an account? Sign In
+        </Text>
         {/* <Text>Sign In</Text> */}
       </TouchableOpacity>
       {/* </ScrollView> */}
@@ -156,5 +160,5 @@ const styles = StyleSheet.create({
   signInButtonText: {
     fontSize: 16,
     marginBottom: "18%",
-  }
+  },
 });

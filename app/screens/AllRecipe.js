@@ -5,19 +5,15 @@ import * as firebase from "firebase";
 import { loggingOut } from "../../API/firebaseMethod";
 
 import {
-  ImageBackground,
   StyleSheet,
   View,
   FlatList,
   Text,
-  Button,
   TextInput,
   Image,
-  TouchableHighlight,
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import { Picker } from "@react-native-community/picker";
 
 export default function AllRecipe({ navigation }) {
   const [query, setQuery] = useState("");
@@ -129,7 +125,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     marginBottom: "2%",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   image: {
     width: 400,
